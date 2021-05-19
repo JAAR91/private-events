@@ -1,0 +1,20 @@
+<h1>New Events Page</h1>
+<%= form_with model: @event, url: "/user/#{current_user.id}/event" do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.submit 'Create Account' %>
+<% end %>

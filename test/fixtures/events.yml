@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  tpeople: 1
+  frequency: MyString
+  type: 
+  category: MyString
+  date: 2021-05-19 16:41:48
+  location: MyString
+  user_id: 1
+  attendee_id: 1
+
+two:
+  title: MyString
+  description: MyString
+  tpeople: 1
+  frequency: MyString
+  type: 
+  category: MyString
+  date: 2021-05-19 16:41:48
+  location: MyString
+  user_id: 1
+  attendee_id: 1
