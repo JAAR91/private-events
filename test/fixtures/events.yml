@@ -5,21 +5,19 @@ one:
   description: MyString
   tpeople: 1
   frequency: MyString
-  type: 
-  category: MyString
-  date: 2021-05-19 16:41:48
+  eventtype: MyString
+  eventcategory: MyString
+  date: 2021-05-20 13:43:17
   location: MyString
   user_id: 1
-  attendee_id: 1
 
 two:
   title: MyString
   description: MyString
   tpeople: 1
   frequency: MyString
-  type: 
-  category: MyString
-  date: 2021-05-19 16:41:48
+  eventtype: MyString
+  eventcategory: MyString
+  date: 2021-05-20 13:43:17
   location: MyString
   user_id: 1
-  attendee_id: 1
