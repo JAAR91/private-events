@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class EventsController < ApplicationController
   def index
     if params[:user_id].nil?
@@ -8,12 +6,6 @@ class EventsController < ApplicationController
       @user = User.find(params[:user_id])
       @events = @user.events
     end
-  end
-
-  def my_events
-    @user = User.find(session[:user_id])
-    @events = @user.events
-    flash.alert = 'welcome to my events!!'
   end
 
   def new

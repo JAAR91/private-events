@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module EventsHelper
   def event_title(user, event)
     if user
@@ -14,7 +12,8 @@ module EventsHelper
     if user.nil?
       nil
     else
-      link_to '<button class="btn btn-success" type="button">Create Event</button>'.html_safe, new_user_event_path(current_user.id),
+      link_to '<button class="btn btn-success" type="button">Create Event</button>'.html_safe,
+              new_user_event_path(current_user.id),
               class: 'link-success text-decoration-none text-uppercase'
     end
   end
@@ -41,17 +40,21 @@ module EventsHelper
 
   def e_type
     ['type', 'Appearance or Signing', 'Attraction', 'Camp, Trip, or Retreat', 'Class, Training, or Workshop',
-     'Concert or Performance', 'Conference', 'Convention', 'Dinner or Gala', 'Festival or Fair', 'Game or Competition', 'Meeting or Networking Event', 'Other', 'Party or Social Gathering', 'Race or Endurance Event', 'Rally', 'Screening', 'Seminar or Talk', 'Tour', 'Tournament', 'Tradeshow, Consumer Show, or Expo']
+     'Concert or Performance', 'Conference', 'Convention', 'Dinner or Gala', 'Festival or Fair',
+     'Game or Competition', 'Meeting or Networking Event', 'Other', 'Party or Social Gathering',
+     'Race or Endurance Event', 'Rally', 'Screening', 'Seminar or Talk', 'Tour', 'Tournament',
+     'Tradeshow, Consumer Show, or Expo']
   end
 
   def e_category
     ['Category', 'Auto, Boat & Air', 'Business & Professional', 'Charity & Causes', 'Community & Culture',
-     'Family & Education', 'Fashion & Beauty', 'Film, Media & Entertainment', 'Food & Drink', 'Government & Politics', 'Health & Wellness', 'Hobbies & Special Interest', 'Home & Lifestyle', 'Music', 'Other', 'Performing & Visual Arts', 'Religion & Spirituality', 'School Activities', 'Science & Technology', 'Seasonal & Holiday', 'Sports & Fitness', 'Travel & Outdoor']
+     'Family & Education', 'Fashion & Beauty', 'Film, Media & Entertainment', 'Food & Drink',
+     'Government & Politics', 'Health & Wellness', 'Hobbies & Special Interest', 'Home & Lifestyle',
+     'Music', 'Other', 'Performing & Visual Arts', 'Religion & Spirituality', 'School Activities',
+     'Science & Technology', 'Seasonal & Holiday', 'Sports & Fitness', 'Travel & Outdoor']
   end
 
   def all_my_events
-    if logged_in?
-      link_to 'My events', user_events_path(current_user.id), class:'nav-link text-dark'
-    end
+    link_to 'My events', user_events_path(current_user.id), class: 'nav-link text-dark' if logged_in?
   end
 end

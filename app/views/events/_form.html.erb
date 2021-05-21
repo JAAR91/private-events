@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center border-bottom">
     <h1>New Events Page</h1>
 </div>
-<%= form_with model: @event, url: t_url do |f| %>
+<%= form_with model: [@user, @event] do |f| %>
     <div class="my-3">
         <%= f.label 'Name for the Event' %> <br>
         <%= f.text_field :title, class:'w-100 form-control my-2' %>
