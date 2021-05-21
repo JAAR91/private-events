@@ -21,13 +21,12 @@ module EventsHelper
   def modify_event(event)
     array = []
     if current_user.id == event.user_id
-      array[0] =
-        link_to 'Edit', edit_user_event_path(current_user.id, event.id),
+      array[0] = link_to 'Edit',
+                edit_user_event_path(current_user.id, event.id),
                 class: 'mx-2 text-decoration-none link-primary'
-      array[1] =
-        link_to 'Destroy', user_event_path(current_user.id, event.id), method: :delete,
-                                                                       data: { confirm: 'Are you sure?' },
-                                                                       class: 'link-danger mx-2 text-decoration-none'
+      array[1] = link_to 'Destroy', user_event_path(current_user.id, event.id),
+                  method: :delete, data: { confirm: 'Are you sure?' },
+                  class: 'link-danger mx-2 text-decoration-none'
       return array
     end
     []

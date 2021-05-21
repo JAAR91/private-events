@@ -9,14 +9,15 @@
             </div>
             <% @events.order('created_at DESC').each do |event| %>
                 <div class="border border-3 rounded p-4 bg-light my-1">
-                    <div class="shadown m-1 d-flex border-bottom">
-                        <p class="text-uppercase"> <%= event_title(logged_in?, event) %> </p>
+                    <p class="text-uppercase text-center"> <%= event_title(logged_in?, event) %> </p>
+                    <div class="shadown m-1 d-flex justify-content-between border-bottom">
+                        <p><%= event.attendees.count%>/<%= event.tpeople%></p>
+                        <p class="text-muted"><%= event.date %></p>
                     </div>
                     <div class="container shadown">
-                            <p class="text-break"><%= event.description %></p>
+                        <p>Description:</p>
+                        <p class="text-break"><%= event.description %></p>
                     </div>
-                    <p class="text-break"><%= event.date %></p>
-                    <p class="shadown ms-auto text-end"><%= event.tpeople%></p>
                 </div>
             <% end %>
         </div>
