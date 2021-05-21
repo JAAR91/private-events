@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events, only: [:show]
+  resources :events, only: [:show] do
+    resources :attendees, only: [:edit, :update]
+  end
 
   get '/invites', to: 'attendees#create'
   post '/invites', to: 'attendees#create'

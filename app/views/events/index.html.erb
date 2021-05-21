@@ -11,7 +11,7 @@
                 <div class="border border-3 rounded p-4 bg-light my-1">
                     <p class="text-uppercase text-center"> <%= event_title(logged_in?, event) %> </p>
                     <div class="shadown m-1 d-flex justify-content-between border-bottom">
-                        <p><%= event.attendees.count%>/<%= event.tpeople%></p>
+                        <p><%= attedees_count(event) %>/<%= event.tpeople%></p>
                         <p class="text-muted"><%= event.date %></p>
                     </div>
                     <div class="container shadown">

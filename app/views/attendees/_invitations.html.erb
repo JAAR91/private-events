@@ -1,6 +1,6 @@
 <div class="border border-3 rounded-3 p-1 bg-light my-1">
     <p class="mx-auto text-center">Invitations sent</p>
-    <% @event.attendees.each do |attendees| %>
+    <% @event.attendees.order('status ASC').each do |attendees| %>
         <div class="d-flex justify-content-around">
             <p><%= attendees.user.username %></p>
             <p><%= attendees.status %></p>

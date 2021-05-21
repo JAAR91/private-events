@@ -8,7 +8,7 @@
                     <p class="text-uppercase"> <%= @event.title %> </p>
                 </div>
                 <div class="d-flex justify-content-between m-1">
-                    <p>Confirmed Assistence: <%= @event.attendees.count %>/<%= @event.tpeople%></p>
+                    <p>Confirmed Assistence: <%= attedees_count(@event) %>/<%= @event.tpeople%></p>
                     <p class="text-break text-muted"> date <%= @event.date %></p>
                 </div>
                 <div class="d-flex justify-content-between m-1 d-flex">
@@ -35,7 +35,7 @@
                 </div>
                                
             </div>
-            <% invitations_owner_check(@event.user.id).each do |checked|%>
+            <% invitations_owner_check(@event).each do |checked|%>
                 <%= checked %>
             <%end%>
         </div>
