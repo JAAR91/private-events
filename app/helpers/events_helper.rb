@@ -3,8 +3,25 @@ module EventsHelper
     if user
       link_to event.title, event_path(event.id),
               class: 'link-info text-decoration-none text-break'
+
     else
       event.title
+    end
+  end
+
+  def event_date_status(event)
+    if event.date.future?
+      return '(Upcoming Event)'
+    else
+      return '(Previous Event)'
+    end
+  end
+
+  def date_color_status(event)
+    if event.date.future?
+      return 'link-success'
+    else
+      return 'link-danger'
     end
   end
 
@@ -53,7 +70,10 @@ module EventsHelper
      'Science & Technology', 'Seasonal & Holiday', 'Sports & Fitness', 'Travel & Outdoor']
   end
 
-  def all_my_events
-    link_to 'My events', user_events_path(current_user.id), class: 'nav-link text-dark' if logged_in?
+  def nav_bar_links
+    array = []
+    array.push(link_to 'My Own events', user_events_path(current_user.id), class: 'nav-link text-dark' ) if logged_in?
+    array.push(link_to 'Invitations', user_attendees_path(current_user.id, :time_spec => 'normal'), class: 'nav-link active') if logged_in?
+    array
   end
 end

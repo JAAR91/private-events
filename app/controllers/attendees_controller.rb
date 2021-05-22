@@ -1,4 +1,17 @@
 class AttendeesController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @user = User.find(params[:user_id])
+    if params[:time_spec] == 'normal'
+      @attendees = @user.attendees
+    elsif params[:time_spec] == 'future'
+      @attendees = @user.attendees.select{|item| item.event.date > Time.now}
+    elsif params[:time_spec] == 'past'
+      @attendees = @user.attendees.select{|item| item.event.date < Time.now}
+    end
+  end
+
   def create
     @user = User.find_by(username: params[:username])
     @event = Event.find(params[:event_id])
@@ -52,9 +65,10 @@ class AttendeesController < ApplicationController
   end
 
   def attemdee_params
-    if params[:commit] == 'Accept'
+    case params[:commit]
+    when 'Accept'
       'accepted'
-    elsif params[:commit] == 'Decline'
+    when 'Decline'
       'declined'
     else
       'canceled'

@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     if params[:user_id].nil?
       @events = Event.all

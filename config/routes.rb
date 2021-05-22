@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root 'events#index'
 
-  resources :users, only: %i[new create show index] do
+  resources :users, only: %i[new create show] do
+    resources :attendees, only: [:index, :show]
     resources :events do
-      resources :attendees
+      resources :attendees, only: [:new,:create,:show, :destroy]
     end
   end
 

@@ -7,9 +7,12 @@
             <div class="container py-2 my-1 text-center">
                 <%= event_post(current_user) %>
             </div>
-            <% @events.order('created_at DESC').each do |event| %>
+            <% @events.order('date DESC').each do |event| %>
                 <div class="border border-3 rounded p-4 bg-light my-1">
-                    <p class="text-uppercase text-center"> <%= event_title(logged_in?, event) %> </p>
+                    <div class="d-flex justify-content-center">
+                    <p class="text-uppercase text-center"> <%= event_title(logged_in?, event) %></p>
+                    <p class="<%= date_color_status(event) %>"><%= event_date_status(event) %></p>
+                    </div>
                     <div class="shadown m-1 d-flex justify-content-between border-bottom">
                         <p><%= attedees_count(event) %>/<%= event.tpeople%></p>
                         <p class="text-muted"><%= event.date %></p>
