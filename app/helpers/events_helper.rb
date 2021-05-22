@@ -11,17 +11,17 @@ module EventsHelper
 
   def event_date_status(event)
     if event.date.future?
-      return '(Upcoming Event)'
+      '(Upcoming Event)'
     else
-      return '(Previous Event)'
+      '(Previous Event)'
     end
   end
 
   def date_color_status(event)
     if event.date.future?
-      return 'link-success'
+      'link-success'
     else
-      return 'link-danger'
+      'link-danger'
     end
   end
 
@@ -72,8 +72,11 @@ module EventsHelper
 
   def nav_bar_links
     array = []
-    array.push(link_to 'My Own events', user_events_path(current_user.id), class: 'nav-link text-dark' ) if logged_in?
-    array.push(link_to 'Invitations', user_attendees_path(current_user.id, :time_spec => 'normal'), class: 'nav-link active') if logged_in?
+    array.push(link_to('My Own events', user_events_path(current_user.id), class: 'nav-link text-dark')) if logged_in?
+    if logged_in?
+      array.push(link_to('Invitations', user_attendees_path(current_user.id, time_spec: 'normal'),
+                         class: 'nav-link active'))
+    end
     array
   end
 end

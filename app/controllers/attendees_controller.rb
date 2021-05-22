@@ -3,12 +3,13 @@ class AttendeesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    if params[:time_spec] == 'normal'
+    case params[:time_spec]
+    when 'normal'
       @attendees = @user.attendees
-    elsif params[:time_spec] == 'future'
-      @attendees = @user.attendees.select{|item| item.event.date > Time.now}
-    elsif params[:time_spec] == 'past'
-      @attendees = @user.attendees.select{|item| item.event.date < Time.now}
+    when 'future'
+      @attendees = @user.attendees.select { |item| item.event.date > Time.now }
+    when 'past'
+      @attendees = @user.attendees.select { |item| item.event.date < Time.now }
     end
   end
 

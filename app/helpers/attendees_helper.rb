@@ -6,30 +6,43 @@ module AttendeesHelper
       array.push(render('attendees/invitations'))
     end
     invitation = event.attendees.find_by(user_id: session[:user_id])
-    if event.tpeople == event.attendees.where(status: 'accepted').count
-      flash.now[:notice] =
-        'This event is not accepting any more people'
-    end
-    if !invitation.nil? && event.tpeople != event.attendees.where(status: 'accepted').count
+    if event.tpeople != event.attendees.where(status: 'accepted').count && !invitation.nil?
       array.push(render('attendees/edit', attendee: invitation)) if invitation.status == 'pending'
-      if invitation.status == 'accepted'
-        flash.now[:notice] = 'You have accepted the invitation from this event!'
-        array.push(render('attendees/cancel', attendee: invitation))
-      end
-      if invitation.status == 'declined'
-        flash.now[:notice] =
-          'You have already declined the invitation from this event!'
-      end
-      if invitation.status == 'canceledfull'
-        flash.now[:notice] =
-          'This event is already full and its not accepting more people'
-      end
-      if invitation.status == 'canceled'
-        flash.now[:notice] =
-          'You have canceled the inviation to this event'
-      end
+      array.push(render('attendees/cancel', attendee: invitation)) if invitation.status == 'accepted'
     end
     array
+  end
+
+  def status_messages(event)
+    if event.date < Time.now
+      flash.now[:notice] =
+        'This event is already over'
+      return
+    elsif event.tpeople == event.attendees.where(status: 'accepted').count
+      flash.now[:notice] =
+        'This event is not accepting any more people'
+      return
+    else
+      status_events_message(event.attendees.find_by(user_id: session[:user_id]))
+    end
+    nil
+  end
+
+  def status_events_message(invitation)
+    case invitation
+    when 'accepted'
+      flash.now[:notice] =
+        'You have already accepted the invitation from this event!'
+    when 'declined'
+      flash.now[:notice] =
+        'You have already declined the invitation from this event!'
+    when 'canceled'
+      flash.now[:notice] =
+        'You have canceled the inviation to this event'
+    when 'canceledfull'
+      flash.now[:notice] =
+        'This event is already full and its not accepting more people'
+    end
   end
 
   def attedees_count(event)
@@ -41,9 +54,9 @@ module AttendeesHelper
 
   def list_group_color(attendee)
     if attendee.event.date.future?
-      return 'list-group-item-success'
+      'list-group-item-success'
     else
-      return 'list-group-item-dark'
+      'list-group-item-dark'
     end
   end
 end
